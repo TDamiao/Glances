@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Instale o Glances com todos os módulos
-RUN pip install glances[all]
+RUN pip install glances
 
 # Crie um novo usuário (glances_user) e adicione ao grupo 'docker'
 RUN groupadd -g 999 docker && \
