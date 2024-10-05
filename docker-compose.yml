@@ -1,0 +1,12 @@
+version: '3'
+services:
+  glances:
+    build: .
+    container_name: glances
+    ports:
+      - "61208:61208"                     # Mapeamento da porta para acessar o Glances pela interface web
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock # Monta o socket Docker para monitoramento
+    restart: unless-stopped               # Reinicia automaticamente, a menos que seja parado manualmente
+    pid: "host"                           # Compartilha o namespace de PID do host para monitorar processos
+    network_mode: "host"                  # Usa a rede do host para acesso direto
