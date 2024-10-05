@@ -12,8 +12,8 @@ RUN apt-get update && apt-get install -y \
 # Instale o Glances com todos os módulos
 RUN pip install glances
 
-# Crie um novo usuário (glances_user) e adicione ao grupo 'docker'
-RUN groupadd -g 999 docker && \
+# Verifique se o grupo 'docker' existe e crie o grupo e usuário caso não existam
+RUN if ! getent group docker > /dev/null; then groupadd -g 999 docker; fi && \
     useradd -r -u 1000 -g docker glances_user && \
     usermod -aG docker glances_user
 
