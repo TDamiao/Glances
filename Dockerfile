@@ -9,8 +9,8 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Instale o Glances com todos os módulos
-RUN pip install glances
+# Instale o Glances com todos os módulos e a biblioteca FastAPI
+RUN pip install glances[web] fastapi
 
 # Verifique se o grupo 'docker' existe e crie o grupo e usuário caso não existam
 RUN if ! getent group docker > /dev/null; then groupadd -g 999 docker; fi && \
